@@ -72,7 +72,7 @@ const students = [
         score: 95
     }
 ]
-const createStudentComponent = (name, subject, info, score) => {
+/*const createStudentComponent = (name, subject, info, score) => {
     for (const student of students) {
         let studentComponent = ""
         if (score <= 60) {
@@ -104,6 +104,32 @@ for (let i = 0; i < students.length; i++) {
         student.info,
         student.score
     )
+}*/
+
+const createStudentComponent = (someObject) => {
+    for (const someObect of students) {
+        if (someObject.score <= 60) {
+            return `
+            <div class="student">
+                <h1 class="xx-large failing">${someObject.name}</h1>
+                <section class="bordered dashed section--padded">${someObject.subject}</section>
+                <aside class="pushRight">${someObect.info}</aside>
+            </div>`;
+        } else {
+            return `
+                <div class="student">
+                    <h1 class="xx-large passing">${someObject.name}</h1>
+                    <section class="bordered dashed section--padded">${someObject.subject}</section>
+                    <aside class="pushRight">${someObject.info}</aside>
+                </div>`
+        }
+    }
+
 }
 
+const studentContainer = document.querySelector("#container")
 
+
+for (let i = 0; i < students.length; i++) {
+    studentContainer.innerHTML += createStudentComponent(students[i])
+}
